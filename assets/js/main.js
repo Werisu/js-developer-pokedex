@@ -25,16 +25,18 @@ function convertPokemonToLi(pokemon) {
 
 function pegaPokemon(pokemon) {
     return `
+        <div style="flex-direction: column;">
         <span id="voltar">Clique aqui para voltar</span>
         <h1 class="name">${pokemon.name}</h1>
+
+        <img src="${pokemon.photo}"
+                alt="${pokemon.name}">
 
         <div class="detail">
             <ol class="types">
                 ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
             </ol>
-
-            <img src="${pokemon.photo}"
-                alt="${pokemon.name}">
+        </div>
         </div>
     `
 }
@@ -62,7 +64,10 @@ function loadPokemonUnic(pokemon){
     volta.addEventListener('click', () => {
         pokemonList.innerHTML = '';
         loadPokemonItens(offset, limit)
-    })
+        loadMoreButton.style.display = 'block';
+    });
+
+    loadMoreButton.style.display = 'none';
 }
 
 loadPokemonItens(offset, limit)
